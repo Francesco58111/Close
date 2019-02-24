@@ -17,10 +17,10 @@ public class CameraBehaviour : MonoBehaviour
     private float pathOffset;
 
 
-    private bool rotateAroundCube = true;
+    public bool rotateAroundCube = true;
 
 
-    private bool isFingerMoving;
+    public bool isFingerMoving;
 
 
     private bool isRotating;
