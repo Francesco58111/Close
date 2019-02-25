@@ -88,11 +88,17 @@ public class CameraBehaviour : MonoBehaviour
     public enum Zoom { into, outo, none }
     public Zoom iZoom;
 
+    public static CameraBehaviour Instance;
 
 
 
 
 
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     /// <summary>
     /// Récupère la position de la souris en perspective

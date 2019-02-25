@@ -85,6 +85,8 @@ public class CellMovement : MonoBehaviour
             selected = false;
             click = false;
             timer = 0;
+            CameraBehaviour.Instance.rotateAroundCube = true;
+
         }
 
         #endregion
