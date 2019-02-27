@@ -47,17 +47,23 @@ public class CellPlacement : MonoBehaviour
                     hit.collider.gameObject.GetComponent<CellMovement>().over = true;
 
                     hit.collider.gameObject.GetComponent<CellMovement>().originPos = Input.mousePosition;
+<<<<<<< HEAD:Assets/PackagesKillian/Package/CellPlacement.cs
 
                     for(int i = 0; i< hit.collider.transform.childCount; i++)
                     {
 
                     }
+=======
+                    CameraBehaviour.Instance.rotateAroundCube = false;
+>>>>>>> Develop:Assets/Scripts/CellPlacement.cs
                 }
 
                 
             }
             else
             {
+                
+
                 for (int i = 0; i < cM.Count; i++)
                 {
 
