@@ -37,6 +37,7 @@ public class CellMovement : MonoBehaviour
     public bool hasEnded;
 
     public bool reverse;
+    public CellPlacement cP;
 
     #region Init
     void Start()
@@ -65,7 +66,6 @@ public class CellMovement : MonoBehaviour
     void Update()
     {
 
-        
         #region ---- RenameByPLace ----
 
 
@@ -392,7 +392,7 @@ public class CellMovement : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Hey That's Too Short Honey");
+            Debug.LogWarning("Hey That's Too Short");
             return;
         }
 
@@ -511,7 +511,7 @@ public class CellMovement : MonoBehaviour
 
             switch (dir)
             {
-                case 1:   ///so the swipe is right
+                case 1:   ///so the swipe is right                                                                          /////////
                     
                         if (brothers[u].transform.position.y < 0 && transform.position.y < 0)
                         {
@@ -541,7 +541,7 @@ public class CellMovement : MonoBehaviour
                         }
                     
                     break;
-                case 2:   ///so the swipe is left
+                case 2:   ///so the swipe is left                                                                            /////////
 
                     if (brothers[u].position.y == transform.position.y)
                     {
@@ -574,16 +574,21 @@ public class CellMovement : MonoBehaviour
 
                     break;
 
-                case 3:   ///so the swipe is down
+                case 3:   ///so the swipe is down                                                                           ////////
+
+
                    /* if (brothers[u].position.z == transform.position.z)
                     {*/
+
+                    if (cP.facingPlane.name == "Plane Forward")
+                    {
                         if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
                         {
                             if (toRotate.Count <= 4)
                             {
                                 toRotate.Add(brothers[u]);
-                            reverse = true;
-                        }
+                                reverse = true;
+                            }
 
                             moveVerticalZ = true;
                             once = true;
@@ -604,12 +609,152 @@ public class CellMovement : MonoBehaviour
                             //return;
 
                         }
-                   // }
+                    }
+                    else if (cP.facingPlane.name == "Plane Away")
+                    {
+                        if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                //reverse = true;
+                            }
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+                        }
+
+                        else if (brothers[u].transform.position.z > 0 && transform.position.z > 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                reverse = true;
+                            }
+
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+
+                        }
+                    }
+                    else if (cP.facingPlane.name == "Plane Right")
+                    {
+                        if (brothers[u].transform.position.x < 0 && transform.position.x < 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                //reverse = true;
+                            }
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+                        }
+
+                        else if (brothers[u].transform.position.x > 0 && transform.position.x > 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                reverse = true;
+                            }
+
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+
+                        }
+                    }
+                    else if (cP.facingPlane.name == "Plane Left")
+                    {
+                        if (brothers[u].transform.position.x < 0 && transform.position.x < 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                reverse = true;
+                            }
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+                        }
+
+                        else if (brothers[u].transform.position.x > 0 && transform.position.x > 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                //reverse = true;
+                            }
+
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+
+                        }
+                    }
+                    // }
                     break;
-                case 4:   ///so the swipe is UP
+
+
+                case 4:   ///so the swipe is UP                                                                                     ////////
+
+
                     /*if (brothers[u].position.z == transform.position.z)
                     {*/
+                    if (cP.facingPlane.name == "Plane Forward")
+                    {
                         if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                //reverse = true;
+                            }
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+                        }
+
+                        else if (brothers[u].transform.position.z > 0 && transform.position.z > 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                reverse = true;
+                            }
+
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+
+                        }
+                    }
+                    else if (cP.facingPlane.name == "Plane Away")
+                    {
+                        if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                reverse = true;
+                            }
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+                        }
+
+                        else if (brothers[u].transform.position.x > 0 && transform.position.x > 0)
                         {
                             if (toRotate.Count <= 4)
                             {
@@ -620,22 +765,70 @@ public class CellMovement : MonoBehaviour
 
                             moveVerticalZ = true;
                             once = true;
-                            // return;
+                            //return;
 
                         }
+                    }
+                    else if (cP.facingPlane.name == "Plane Right")
+                    {
+                        if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                reverse = true;
+                            }
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+                        }
+
                         else if (brothers[u].transform.position.z > 0 && transform.position.z > 0)
                         {
                             if (toRotate.Count <= 4)
                             {
                                 toRotate.Add(brothers[u]);
-                            reverse = true;
-                        }
+                                //reverse = true;
+                            }
+
+
                             moveVerticalZ = true;
                             once = true;
-                            // return;
+                            //return;
 
                         }
-                    //}
+                    }
+                    else if (cP.facingPlane.name == "Plane Left")
+                    {
+                        if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                //reverse = true;
+                            }
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+                        }
+
+                        else if (brothers[u].transform.position.z > 0 && transform.position.z > 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                reverse = true;
+                            }
+
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+
+                        }
+                    }
                     break;
             }
 

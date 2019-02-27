@@ -371,6 +371,7 @@ MonoBehaviour:
   myPosFreeze: {x: 0, y: 0, z: 0}
   hasEnded: 0
   reverse: 0
+  cP: {fileID: 721795838}
 --- !u!65 &159203163
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -384,6 +385,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &159203164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159203161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62212e89d6c3674694d449176db9cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: 0
+  timer: 0
+  nbrTouch: 0
+  rotation: 0
+  set: 0
+  myRot: {x: 0, y: 0, z: 0, w: 0}
+  timeRot: 0
+  fin: 74
+  wtf: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &165668794 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1506257909362596, guid: f02717ddb2fe5e74695beac716f76a02,
@@ -676,6 +698,7 @@ MonoBehaviour:
   myPosFreeze: {x: 0, y: 0, z: 0}
   hasEnded: 0
   reverse: 0
+  cP: {fileID: 721795838}
 --- !u!65 &305682997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -689,6 +712,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &305682998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305682995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62212e89d6c3674694d449176db9cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: 0
+  timer: 0
+  nbrTouch: 0
+  rotation: 0
+  set: 0
+  myRot: {x: 0, y: 0, z: 0, w: 0}
+  timeRot: 0
+  fin: 74
+  wtf: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &397837401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1506257909362596, guid: f02717ddb2fe5e74695beac716f76a02,
@@ -753,6 +797,7 @@ MonoBehaviour:
   myPosFreeze: {x: 0, y: 0, z: 0}
   hasEnded: 0
   reverse: 0
+  cP: {fileID: 721795838}
 --- !u!65 &439171788
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -766,6 +811,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &439171789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439171786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62212e89d6c3674694d449176db9cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: 0
+  timer: 0
+  nbrTouch: 0
+  rotation: 0
+  set: 0
+  myRot: {x: 0, y: 0, z: 0, w: 0}
+  timeRot: 0
+  fin: 74
+  wtf: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &495154717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,6 +1547,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   fingerCamera: {fileID: 534669904}
   myBrain: {fileID: 534669906}
+  once: 0
+  facingPlane: {fileID: 0}
 --- !u!1 &735640678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1298653405383838, guid: f02717ddb2fe5e74695beac716f76a02,
@@ -1777,6 +1845,98 @@ MonoBehaviour:
   myMaterial: {fileID: 0}
   cam: {fileID: 534669902}
   distance: 0
+--- !u!1 &1037596789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1037596793}
+  - component: {fileID: 1037596792}
+  - component: {fileID: 1037596791}
+  - component: {fileID: 1037596790}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &1037596790
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037596789}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1037596791
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037596789}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7d7b033caede30a43947f904f93acc2b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1037596792
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037596789}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1037596793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037596789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 14.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1081669044 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1146711319383536, guid: f02717ddb2fe5e74695beac716f76a02,
@@ -1904,6 +2064,7 @@ MonoBehaviour:
   myPosFreeze: {x: 0, y: 0, z: 0}
   hasEnded: 0
   reverse: 0
+  cP: {fileID: 721795838}
 --- !u!65 &1206990012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1917,6 +2078,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1206990013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206990010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62212e89d6c3674694d449176db9cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: 0
+  timer: 0
+  nbrTouch: 0
+  rotation: 0
+  set: 0
+  myRot: {x: 0, y: 0, z: 0, w: 0}
+  timeRot: 0
+  fin: 74
+  wtf: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1228788122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2527,6 +2709,7 @@ MonoBehaviour:
   myPosFreeze: {x: 0, y: 0, z: 0}
   hasEnded: 0
   reverse: 0
+  cP: {fileID: 721795838}
 --- !u!65 &1578821661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2540,6 +2723,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1578821662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578821659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62212e89d6c3674694d449176db9cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: 0
+  timer: 0
+  nbrTouch: 0
+  rotation: 0
+  set: 0
+  myRot: {x: 0, y: 0, z: 0, w: 0}
+  timeRot: 0
+  fin: 74
+  wtf: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1595373136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2805,6 +3009,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64769280431847262, guid: f02717ddb2fe5e74695beac716f76a02,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f02717ddb2fe5e74695beac716f76a02, type: 3}
 --- !u!4 &1705426149 stripped
@@ -2931,6 +3140,7 @@ MonoBehaviour:
   myPosFreeze: {x: 0, y: 0, z: 0}
   hasEnded: 0
   reverse: 0
+  cP: {fileID: 721795838}
 --- !u!65 &1798898177
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2968,6 +3178,27 @@ MonoBehaviour:
   - {fileID: 1206990010}
   - {fileID: 305682995}
   isWaiting: 0
+--- !u!114 &1798898179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798898175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62212e89d6c3674694d449176db9cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: 0
+  timer: 0
+  nbrTouch: 0
+  rotation: 0
+  set: 0
+  myRot: {x: 0, y: 0, z: 0, w: 0}
+  timeRot: 0
+  fin: 74
+  wtf: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1819504599 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1926130899905342, guid: f02717ddb2fe5e74695beac716f76a02,
@@ -3032,6 +3263,7 @@ MonoBehaviour:
   myPosFreeze: {x: 0, y: 0, z: 0}
   hasEnded: 0
   reverse: 0
+  cP: {fileID: 721795838}
 --- !u!65 &1862047797
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3045,6 +3277,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1862047798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862047795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62212e89d6c3674694d449176db9cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: 0
+  timer: 0
+  nbrTouch: 0
+  rotation: 0
+  set: 0
+  myRot: {x: 0, y: 0, z: 0, w: 0}
+  timeRot: 0
+  fin: 74
+  wtf: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1974246567 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1298653405383838, guid: f02717ddb2fe5e74695beac716f76a02,
@@ -3450,6 +3703,7 @@ MonoBehaviour:
   myPosFreeze: {x: 0, y: 0, z: 0}
   hasEnded: 0
   reverse: 0
+  cP: {fileID: 721795838}
 --- !u!65 &2101178853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3463,6 +3717,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.05, y: 1.05, z: 1.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2101178854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101178851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62212e89d6c3674694d449176db9cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: 0
+  timer: 0
+  nbrTouch: 0
+  rotation: 0
+  set: 0
+  myRot: {x: 0, y: 0, z: 0, w: 0}
+  timeRot: 0
+  fin: 74
+  wtf: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2122446049 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1298653405383838, guid: f02717ddb2fe5e74695beac716f76a02,

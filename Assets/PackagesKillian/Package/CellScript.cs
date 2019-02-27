@@ -31,9 +31,9 @@ public class CellScript : MonoBehaviour {
 
             if(timer>= 30)
             {
-                first = false;
                 nbrTouch = 0;
                 timer = 0;
+                first = false;
             }
         }
 
@@ -43,7 +43,7 @@ public class CellScript : MonoBehaviour {
             
             timeRot++;
 
-            if (/*transform.rotation == myRot*new Quaternion(0,90,0,0)*/timeRot > fin)
+            if (/*transform.rotation == myRot*new Quaternion(0,90,0,0) */timeRot > fin)
             {
                 timeRot = 0;
                 rotation = false;

@@ -14,7 +14,8 @@ public class CellPlacement : MonoBehaviour
 
     public Camera fingerCamera;
     public CinemachineBrain myBrain;
-
+    public bool once;
+    public GameObject facingPlane;
 
     // Use this for initialization
     void Start()
@@ -33,6 +34,8 @@ public class CellPlacement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            once = true; 
+
             RaycastHit hit;
 
             if (Physics.Raycast(myBrain.OutputCamera.ScreenPointToRay(Input.mousePosition), out hit))
@@ -45,7 +48,13 @@ public class CellPlacement : MonoBehaviour
 
                     hit.collider.gameObject.GetComponent<CellMovement>().originPos = Input.mousePosition;
 
+                    for(int i = 0; i< hit.collider.transform.childCount; i++)
+                    {
+
+                    }
                 }
+
+                
             }
             else
             {
@@ -58,11 +67,34 @@ public class CellPlacement : MonoBehaviour
             }
         }
 
+        if (Input.GetMouseButton(0) && once)
+        {
+            RaycastHit[] hits;
+
+            hits = Physics.RaycastAll(myBrain.OutputCamera.ScreenPointToRay(Input.mousePosition), 25);
+
+            if (hits.Length != 0 && hits[0].transform.name.Contains("Cell") == false)
+            {
+                Debug.LogError(hits[0].transform.name);
+                facingPlane = hits[0].transform.gameObject;
+                once = false;
+            }
+            else if (hits.Length >1)
+            {
+                Debug.LogError(hits[1].transform.name);
+                facingPlane = hits[1].transform.gameObject;
+                once = false;
+            }
+            
+        }
 
     }
 
 
-    public void CheckForDirection()
+
+
+
+        public void CheckForDirection()
     {
        
         if (Input.GetMouseButton(0))
