@@ -23,23 +23,23 @@ public class Cell_Renamer : MonoBehaviour
                 }
                 else if (other.transform.GetChild(i).transform.localPosition.y == -0.5f )
                 {
-                    other.transform.GetChild(i).name = "Plane Down";
+                    other.transform.GetChild(i).name = "PlaneDown";
                 }
                 else if (other.transform.GetChild(i).transform.localPosition.x == 0.5f)
                 {
-                    other.transform.GetChild(i).name = "Plane Forward";
+                    other.transform.GetChild(i).name = "PlaneForward";
                 }
                 else if (other.transform.GetChild(i).transform.localPosition.x == -0.5f)
                 {
-                    other.transform.GetChild(i).name = "Plane Away";
+                    other.transform.GetChild(i).name = "PlaneAway";
                 }
                 else if (other.transform.GetChild(i).transform.localPosition.z == 0.5f)
                 {
-                    other.transform.GetChild(i).name = "Plane Right";
+                    other.transform.GetChild(i).name = "PlaneRight";
                 }
                 else if (other.transform.GetChild(i).transform.localPosition.z == -0.5f)
                 {
-                    other.transform.GetChild(i).name = "Plane Left";
+                    other.transform.GetChild(i).name = "PlaneLeft";
                 }
 
             }

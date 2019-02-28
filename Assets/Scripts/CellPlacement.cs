@@ -42,20 +42,20 @@ public class CellPlacement : MonoBehaviour
             {
                 if (hit.collider.gameObject.GetComponent<CellMovement>() != null)
                 {
-                    Debug.Log("ok so I work");
+                    //Debug.Log("ok so I work");
                     hit.collider.gameObject.GetComponent<CellMovement>().click = true;
                     hit.collider.gameObject.GetComponent<CellMovement>().over = true;
 
                     hit.collider.gameObject.GetComponent<CellMovement>().originPos = Input.mousePosition;
-<<<<<<< HEAD:Assets/PackagesKillian/Package/CellPlacement.cs
+// HEAD:Assets/PackagesKillian/Package/CellPlacement.cs
 
-                    for(int i = 0; i< hit.collider.transform.childCount; i++)
+                    /*for(int i = 0; i< hit.collider.transform.childCount; i++)
                     {
 
-                    }
-=======
+                    }*/
+//
                     CameraBehaviour.Instance.rotateAroundCube = false;
->>>>>>> Develop:Assets/Scripts/CellPlacement.cs
+// Develop:Assets/Scripts/CellPlacement.cs
                 }
 
                 
@@ -81,13 +81,13 @@ public class CellPlacement : MonoBehaviour
 
             if (hits.Length != 0 && hits[0].transform.name.Contains("Cell") == false)
             {
-                Debug.LogError(hits[0].transform.name);
+                Debug.LogWarning(hits[0].transform.name);
                 facingPlane = hits[0].transform.gameObject;
                 once = false;
             }
             else if (hits.Length >1)
             {
-                Debug.LogError(hits[1].transform.name);
+                Debug.LogWarning(hits[1].transform.name);
                 facingPlane = hits[1].transform.gameObject;
                 once = false;
             }

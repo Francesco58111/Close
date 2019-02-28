@@ -38,6 +38,7 @@ public class CellMovement : MonoBehaviour
 
     public bool reverse;
     public CellPlacement cP;
+    public bool moveVerticalX;
 
     #region Init
     void Start()
@@ -130,7 +131,7 @@ public class CellMovement : MonoBehaviour
         }
         else if (!isOpen)
         {
-           // gameObject.name = myName;
+            // gameObject.name = myName;
 
         }
         #endregion
@@ -196,7 +197,7 @@ public class CellMovement : MonoBehaviour
         {
             // Debug.Log(myName + "      ResetGood");
             myPosFreeze = transform.position;
-            
+
             freezePosValue = false;
         }
 
@@ -212,7 +213,7 @@ public class CellMovement : MonoBehaviour
         {
             //Debug.Log(gameObject.name);
 
-            for(int r = 0; r < brothers.Count; r++)
+            for (int r = 0; r < brothers.Count; r++)
             {
                 brothers[r].GetComponent<CellMovement>().hasEnded = false;
 
@@ -293,9 +294,9 @@ public class CellMovement : MonoBehaviour
             {
                 Debug.LogWarning("Playing");
 
-                if (v != toRotate.Count-1)
+                if (v != toRotate.Count - 1)
                 {
-                    toRotate[v].transform.position = new Vector3((Mathf.Lerp(toRotate[v].transform.position.x, toRotate[v+1].GetComponent<CellMovement>().myPosFreeze.x,0.1f)), (Mathf.Lerp(toRotate[v].transform.position.y, toRotate[v + 1].GetComponent<CellMovement>().myPosFreeze.y, 0.1f)), toRotate[v].transform.position.z);
+                    toRotate[v].transform.position = new Vector3((Mathf.Lerp(toRotate[v].transform.position.x, toRotate[v + 1].GetComponent<CellMovement>().myPosFreeze.x, 0.1f)), (Mathf.Lerp(toRotate[v].transform.position.y, toRotate[v + 1].GetComponent<CellMovement>().myPosFreeze.y, 0.1f)), toRotate[v].transform.position.z);
 
                 }
                 else
@@ -328,6 +329,57 @@ public class CellMovement : MonoBehaviour
                 timer = 0;
 
                 moveVerticalZ = false;
+            }
+        }
+
+        if (moveVerticalX)
+        {
+            Debug.LogWarning("YOU DEMANDED THE INVERSE BUT IN X");
+
+            toRotate[0].GetComponent<CellMovement>().hasEnded = false;
+            toRotate[1].GetComponent<CellMovement>().hasEnded = false;
+            toRotate[2].GetComponent<CellMovement>().hasEnded = false;
+            toRotate[3].GetComponent<CellMovement>().hasEnded = false;
+
+            for (int v = 0; v < toRotate.Count; v++)
+            {
+                Debug.LogWarning("PlayingX");
+
+                if (v != toRotate.Count - 1)
+                {
+                    toRotate[v].transform.position = new Vector3(toRotate[v].transform.position.x, (Mathf.Lerp(toRotate[v].transform.position.y, toRotate[v + 1].GetComponent<CellMovement>().myPosFreeze.y, 0.1f)), (Mathf.Lerp(toRotate[v].transform.position.z, toRotate[v + 1].GetComponent<CellMovement>().myPosFreeze.z, 0.1f)));
+
+                }
+                else
+                {
+                    toRotate[v].transform.position = new Vector3(toRotate[v].transform.position.x, (Mathf.Lerp(toRotate[v].transform.position.y, toRotate[0].GetComponent<CellMovement>().myPosFreeze.y, 0.1f)), (Mathf.Lerp(toRotate[v].transform.position.z, toRotate[0].GetComponent<CellMovement>().myPosFreeze.z, 0.1f)));
+
+                }
+            }
+
+            ///There May Be A Delay Between Two Movement with this way to check
+            ///
+            if (toRotate[0].position == toRotate[1].GetComponent<CellMovement>().myPosFreeze && toRotate.Count >= 3)
+            {
+                Debug.LogWarning("__HAS__ENDED__");
+                movement = false;
+
+                toRotate[0].GetComponent<CellMovement>().freezePosValue = true;
+                toRotate[1].GetComponent<CellMovement>().freezePosValue = true;
+                toRotate[2].GetComponent<CellMovement>().freezePosValue = true;
+                toRotate[3].GetComponent<CellMovement>().freezePosValue = true;
+
+                toRotate[0].GetComponent<CellMovement>().hasEnded = true;
+                toRotate[1].GetComponent<CellMovement>().hasEnded = true;
+                toRotate[2].GetComponent<CellMovement>().hasEnded = true;
+                toRotate[3].GetComponent<CellMovement>().hasEnded = true;
+
+                once = false;
+                selected = false;
+                click = false;
+                timer = 0;
+
+                moveVerticalX = false;
             }
         }
     }
@@ -376,7 +428,7 @@ public class CellMovement : MonoBehaviour
                 HorizontalRotateSide(3);
 
                 //CastRay(3);
-                once = true;
+                // once = true;
             }
         }
         else if (distanceMove.y >= 100)
@@ -389,7 +441,7 @@ public class CellMovement : MonoBehaviour
                 HorizontalRotateSide(4);
 
                 //CastRay(4);
-                once = true;
+                // once = true;
             }
         }
         else
@@ -505,7 +557,7 @@ public class CellMovement : MonoBehaviour
         // 2 = LEFT
 
 
-        Debug.Log("I play myself normaly");
+        //Debug.Log("I play myself normaly");
 
         for (int u = 0; u < brothers.Count; u++)
         {
@@ -514,34 +566,34 @@ public class CellMovement : MonoBehaviour
             switch (dir)
             {
                 case 1:   ///so the swipe is right                                                                          /////////
-                    
-                        if (brothers[u].transform.position.y < 0 && transform.position.y < 0)
+
+                    if (brothers[u].transform.position.y < 0 && transform.position.y < 0)
+                    {
+                        if (toRotate.Count <= 4)
                         {
-                            if (toRotate.Count <= 4)
-                            {
-                                toRotate.Add(brothers[u]);
-
-                            }
-
-                            moveHorizontal = true;
-                            once = true;
-                            //return;
-                        }
-                        else if (brothers[u].transform.position.y > 0 && transform.position.y > 0)
-                        {
-                            if (toRotate.Count <= 4)
-                            {
-                                toRotate.Add(brothers[u]);
-                                reverse = true;
-                            }
-
-
-                            moveHorizontal = true;
-                            once = true;
-                            //return;
+                            toRotate.Add(brothers[u]);
 
                         }
-                    
+
+                        moveHorizontal = true;
+                        once = true;
+                        //return;
+                    }
+                    else if (brothers[u].transform.position.y > 0 && transform.position.y > 0)
+                    {
+                        if (toRotate.Count <= 4)
+                        {
+                            toRotate.Add(brothers[u]);
+                            reverse = true;
+                        }
+
+
+                        moveHorizontal = true;
+                        once = true;
+                        //return;
+
+                    }
+
                     break;
                 case 2:   ///so the swipe is left                                                                            /////////
 
@@ -579,13 +631,15 @@ public class CellMovement : MonoBehaviour
                 case 3:   ///so the swipe is down                                                                           ////////
 
 
-                   /* if (brothers[u].position.z == transform.position.z)
-                    {*/
+                    /* if (brothers[u].position.z == transform.position.z)
+                     {*/
 
-                    if (cP.facingPlane.name == "Plane Forward")
+                    if (cP.facingPlane.name == "PlaneForward")
                     {
+                       // Debug.Log("I play Forward");
                         if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
                         {
+                          // Debug.Log("I play Forward Two");
                             if (toRotate.Count <= 4)
                             {
                                 toRotate.Add(brothers[u]);
@@ -612,10 +666,13 @@ public class CellMovement : MonoBehaviour
 
                         }
                     }
-                    else if (cP.facingPlane.name == "Plane Away")
+
+                    if (cP.facingPlane.name == "PlaneAway")
                     {
+                        //Debug.Log("I play Away");
                         if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
                         {
+                            //Debug.Log("I play Away Two");
                             if (toRotate.Count <= 4)
                             {
                                 toRotate.Add(brothers[u]);
@@ -642,17 +699,20 @@ public class CellMovement : MonoBehaviour
 
                         }
                     }
-                    else if (cP.facingPlane.name == "Plane Right")
+
+                    if (cP.facingPlane.name == "PlaneRight")
                     {
+                       // Debug.Log("I play Right");
                         if (brothers[u].transform.position.x < 0 && transform.position.x < 0)
                         {
+                          //  Debug.Log("I play Right Two");
                             if (toRotate.Count <= 4)
                             {
                                 toRotate.Add(brothers[u]);
-                                //reverse = true;
+                                reverse = true;
                             }
 
-                            moveVerticalZ = true;
+                            moveVerticalX = true;
                             once = true;
                             //return;
                         }
@@ -666,23 +726,26 @@ public class CellMovement : MonoBehaviour
                             }
 
 
-                            moveVerticalZ = true;
+                            moveVerticalX = true;
                             once = true;
                             //return;
 
                         }
                     }
-                    else if (cP.facingPlane.name == "Plane Left")
+
+                    if (cP.facingPlane.name == "PlaneLeft")
                     {
+                       // Debug.Log("I play Left");
                         if (brothers[u].transform.position.x < 0 && transform.position.x < 0)
                         {
+                         //   Debug.Log("I play Left Two");
                             if (toRotate.Count <= 4)
                             {
                                 toRotate.Add(brothers[u]);
-                                reverse = true;
+                                //reverse = true;
                             }
 
-                            moveVerticalZ = true;
+                            moveVerticalX = true;
                             once = true;
                             //return;
                         }
@@ -696,7 +759,7 @@ public class CellMovement : MonoBehaviour
                             }
 
 
-                            moveVerticalZ = true;
+                            moveVerticalX = true;
                             once = true;
                             //return;
 
@@ -711,7 +774,7 @@ public class CellMovement : MonoBehaviour
 
                     /*if (brothers[u].position.z == transform.position.z)
                     {*/
-                    if (cP.facingPlane.name == "Plane Forward")
+                    if (cP.facingPlane.name == "PlaneForward")
                     {
                         if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
                         {
@@ -741,7 +804,8 @@ public class CellMovement : MonoBehaviour
 
                         }
                     }
-                    else if (cP.facingPlane.name == "Plane Away")
+
+                    if (cP.facingPlane.name == "PlaneAway")
                     {
                         if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
                         {
@@ -752,6 +816,37 @@ public class CellMovement : MonoBehaviour
                             }
 
                             moveVerticalZ = true;
+                            once = true;
+                            //return;
+                        }
+
+                        else if (brothers[u].transform.position.z > 0 && transform.position.z > 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                //reverse = true;
+                            }
+
+
+                            moveVerticalZ = true;
+                            once = true;
+                            //return;
+
+                        }
+                    }
+
+                    if (cP.facingPlane.name == "PlaneRight")
+                    {
+                        if (brothers[u].transform.position.x < 0 && transform.position.x < 0)
+                        {
+                            if (toRotate.Count <= 4)
+                            {
+                                toRotate.Add(brothers[u]);
+                                //reverse = true;
+                            }
+
+                            moveVerticalX = true;
                             once = true;
                             //return;
                         }
@@ -765,15 +860,16 @@ public class CellMovement : MonoBehaviour
                             }
 
 
-                            moveVerticalZ = true;
+                            moveVerticalX = true;
                             once = true;
                             //return;
 
                         }
                     }
-                    else if (cP.facingPlane.name == "Plane Right")
+
+                    if (cP.facingPlane.name == "PlaneLeft")
                     {
-                        if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
+                        if (brothers[u].transform.position.x < 0 && transform.position.x < 0)
                         {
                             if (toRotate.Count <= 4)
                             {
@@ -781,42 +877,12 @@ public class CellMovement : MonoBehaviour
                                 reverse = true;
                             }
 
-                            moveVerticalZ = true;
+                            moveVerticalX = true;
                             once = true;
                             //return;
                         }
 
-                        else if (brothers[u].transform.position.z > 0 && transform.position.z > 0)
-                        {
-                            if (toRotate.Count <= 4)
-                            {
-                                toRotate.Add(brothers[u]);
-                                //reverse = true;
-                            }
-
-
-                            moveVerticalZ = true;
-                            once = true;
-                            //return;
-
-                        }
-                    }
-                    else if (cP.facingPlane.name == "Plane Left")
-                    {
-                        if (brothers[u].transform.position.z < 0 && transform.position.z < 0)
-                        {
-                            if (toRotate.Count <= 4)
-                            {
-                                toRotate.Add(brothers[u]);
-                                //reverse = true;
-                            }
-
-                            moveVerticalZ = true;
-                            once = true;
-                            //return;
-                        }
-
-                        else if (brothers[u].transform.position.z > 0 && transform.position.z > 0)
+                        else if (brothers[u].transform.position.x > 0 && transform.position.x > 0)
                         {
                             if (toRotate.Count <= 4)
                             {
@@ -825,7 +891,7 @@ public class CellMovement : MonoBehaviour
                             }
 
 
-                            moveVerticalZ = true;
+                            moveVerticalX = true;
                             once = true;
                             //return;
 
@@ -838,7 +904,6 @@ public class CellMovement : MonoBehaviour
 
     }
 
-    //toRotate.Add(brothers[u]);
 
 }
 #endregion
