@@ -66,7 +66,16 @@ public class CellMovement : MonoBehaviour
 
     void Update()
     {
-
+        /*for (int i = 0; i < brothers.Count; i++)
+        {
+            if (brothers[i].GetComponent<CellMovement>().isSpawn == false)
+            {
+                for (int f = 0; f < brothers[i].transform.childCount; f++)
+                {
+                    transform.GetChild(f).GetComponent<Renderer>().material.SetInt("_isActive", 0);
+                }
+            }
+        }*/
         #region ---- RenameByPLace ----
 
 
@@ -87,8 +96,16 @@ public class CellMovement : MonoBehaviour
             click = false;
             timer = 0;
             CameraBehaviour.Instance.rotateAroundCube = true;
-
+            isOpen = false;
+            if(!isSpawn)
+            {
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).GetComponent<Renderer>().material.SetInt("_isActive", 0);
+                }
+            }
         }
+        
 
         #endregion
 
@@ -99,11 +116,13 @@ public class CellMovement : MonoBehaviour
         //Takes off the Outline when click elsewhere
         if (Input.GetMouseButtonDown(0) && !over && !isSpawn)
         {
+            
             for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).GetComponent<Renderer>().material.SetInt("_isActive", 0);
-
+                
             }
+
         }
 
         //Adds the outline if neither spawn nor exit Cell // Changes the name too for Debug
@@ -127,11 +146,25 @@ public class CellMovement : MonoBehaviour
         //Debug Name to Check for free Cells around player
         if (isOpen)
         {
-            //gameObject.name = myName + " ----- IsOpen";
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_myColor", new Color32(140,140,140,255));
+
+                transform.GetChild(i).GetComponent<Renderer>().material.SetInt("_isActive", 1);
+
+
+            }
         }
         else if (!isOpen)
         {
-            // gameObject.name = myName;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+
+                transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_myColor", Color.green);
+                
+
+
+            }
 
         }
         #endregion
@@ -183,6 +216,17 @@ public class CellMovement : MonoBehaviour
         if (click)
         {
             timer++;
+            for (int i = 0; i < brothers.Count; i++)
+            {
+                isOpen = false;
+                if (!isSpawn)
+                {
+                    for (int f = 0; f < transform.childCount; f++)
+                    {
+                        transform.GetChild(f).GetComponent<Renderer>().material.SetInt("_isActive", 0);
+                    }
+                }
+            }
         }
 
         //Stores position of The Mouse after timer is 30
@@ -206,11 +250,14 @@ public class CellMovement : MonoBehaviour
         {
             CheckMove();
 
+            
         }
 
         //Makes the actual Position of Cell Change. The 1rst position --> the 2nd etc..
         if (moveHorizontal)
         {
+            
+
             //Debug.Log(gameObject.name);
 
             for (int r = 0; r < brothers.Count; r++)

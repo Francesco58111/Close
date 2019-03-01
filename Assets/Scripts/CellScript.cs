@@ -14,6 +14,7 @@ public class CellScript : MonoBehaviour {
     public int timeRot = 0;
     public int fin;
     public Quaternion wtf;
+    public bool isCurrent;
 
 	void Start () {
 
@@ -56,6 +57,82 @@ public class CellScript : MonoBehaviour {
     {
         first = true;
         nbrTouch += 1;
+
+        #region ColorFreeCells
+        if(isCurrent)
+        {
+            RaycastHit hit;
+
+            if(Physics.Raycast(gameObject.transform.position, new Vector3(0, 0, -1), out hit))
+            {
+                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                }
+                else
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                }
+            }
+            if (Physics.Raycast(gameObject.transform.position, new Vector3(0, 0, 1), out hit))
+            {
+                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                }
+                else
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                }
+            }
+            if (Physics.Raycast(gameObject.transform.position, new Vector3(0, -1, 0), out hit))
+            {
+                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                }
+                else
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                }
+            }
+            if (Physics.Raycast(gameObject.transform.position, new Vector3(0, 1, 0), out hit))
+            {
+                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                }
+                else
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                }
+            }
+            if (Physics.Raycast(gameObject.transform.position, new Vector3(-1, 0, 0), out hit))
+            {
+                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                }
+                else
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                }
+            }
+            if (Physics.Raycast(gameObject.transform.position, new Vector3(1, 0, 0), out hit))
+            {
+                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                }
+                else
+                {
+                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                }
+            }
+        }
+
+        
+        #endregion
 
         if (first && nbrTouch>1)
         {
