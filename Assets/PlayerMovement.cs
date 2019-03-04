@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public int myPath;
     public bool one;
     public bool zero;
+    public List<bool> ways;
 
     public int index;
     public bool next = true;
@@ -29,6 +30,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        /*
+        if(ways.Count < context.paths.list.Count)
+        {
+            ways.Add(new bool());
+        }
+        if(ways.Count > context.paths.list.Count)
+        {
+            ways.RemoveAt(ways.Count - 1);
+        }
+        */
+       /* = context.paths.list;*/
+
         if (reset)
         {
             ResetWhenTooFar();
@@ -85,24 +98,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        /*
-        if (reset)
-        {
-            CalculateDistance(origin);
 
-            //direction = origin;
-
-            transform.position = Vector3.Lerp(transform.position, origin, 0.05f);
-
-            if (distance <= minDist)
-            {
-                //once = false;
-                movement = true;
-                reset = false;
-            }
-
-        }
-        */
 
     }
 

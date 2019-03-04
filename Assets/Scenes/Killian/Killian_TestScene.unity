@@ -3730,7 +3730,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 4.34, z: 0}
 --- !u!23 &1690841136
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4664,6 +4664,7 @@ MonoBehaviour:
   myPath: 4
   one: 0
   zero: 0
+  ways: 
   index: 0
   next: 1
 --- !u!1 &2086085571
