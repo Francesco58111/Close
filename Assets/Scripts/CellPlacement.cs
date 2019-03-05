@@ -20,7 +20,7 @@ public class CellPlacement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Application.targetFrameRate = 300;
+        //Application.targetFrameRate = 300;
         nbrTouch = 0;
 
     }

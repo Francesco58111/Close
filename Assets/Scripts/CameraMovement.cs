@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CameraMovement : MonoBehaviour
 {
 
     [Header("Récupération des components")]
-    public Camera fingerCamera; //Camera fixe pour la récupération des positions du doigt pendant une rotation CUBE/Camera
     public CinemachineDollyCart dollyCart; //Récupération de la vitesse de rotation du script DollyCart utilisant le Dolly Horizontal
     public CinemachineVirtualCamera virtualCamera; //Récupération de l'offset du target
     public Transform dollyTransform; //Récupération de la vitesse de rotation du script DollyCart utilisant le Dolly Vertical
     public CinemachineBrain brain;
 
-    private bool hit;
-    private RaycastHit mouseRay;
+    [Header("Camera Rotation Parameters")]
 
     public bool aboutCamera;
     private bool isRotating;
@@ -25,12 +24,13 @@ public class CameraMovement : MonoBehaviour
     private bool isFingerMoving;
     private bool isOrientationSet;
 
-    private float pathOffset;
+    private float pathOffset = 0.5f;
     private float slowingSpeed;
     private float pathSpeed;
-    private float fieldOfView;
+    private float fieldOfView = 40;
 
     private float speed;
+
 
     public enum VerticalDirection { up, down, center }
     public VerticalDirection yDirection;
@@ -72,26 +72,20 @@ public class CameraMovement : MonoBehaviour
 
     /*
     [Header("Debug texts")]
-    public Text text00;
-    public Text text01;
-    public Text text02;
-    public Text text03;
-    public Text text04;
-    public Text text05;
-    public Text text06;
-    public Text text07;
-    public Text text08;
-    public Text text09;
+    public List<TextMeshProUGUI> debugTexts;
     */
 
-
+    private void Awake()
+    {
+        Application.targetFrameRate = 300;
+    }
 
     void Update()
     {
         //Si le joueur n'a pas sélectionné le CUBE
         if (aboutCamera)
         {
-            if (Input.touchCount == 1)
+            if (Input.touchCount == 1 && isZooming == false)
             {
                 touchOne = Input.GetTouch(0);
                 currentOnePos = touchOne.position;
@@ -185,7 +179,7 @@ public class CameraMovement : MonoBehaviour
                 }
             }
 
-            if (Input.touchCount == 2)
+            if (Input.touchCount == 2 && isRotating == false)
             {
                 onZoom = true;
 
@@ -240,11 +234,11 @@ public class CameraMovement : MonoBehaviour
             //Update des valeurs concernées
             dollyCart.m_Speed = pathSpeed; //Vitesse de rotation horizontale
             dollyTransform.position = new Vector3(dollyTransform.position.x, pathOffset, dollyTransform.position.z); //Position vertical du dolly de la camera
-            pathOffset = Mathf.Clamp(pathOffset, minOffset, maxOffset); //Limites de la position vertical
+            //pathOffset = Mathf.Clamp(pathOffset, minOffset, maxOffset); //Limites de la position vertical
             virtualCamera.m_Lens.FieldOfView = fieldOfView; //Focale de la camera
-            fieldOfView = Mathf.Clamp(fieldOfView, minFOV, maxFOV); //Limites de la focale
+            //fieldOfView = Mathf.Clamp(fieldOfView, minFOV, maxFOV); //Limites de la focale
 
-            if (isRotating)
+            if (isRotating && !isZooming)
             {
                 CameraTracking();
                 AdjustHeight();
@@ -254,7 +248,7 @@ public class CameraMovement : MonoBehaviour
                 pathSpeed = 0;
             }
 
-            if (isZooming)
+            if (isZooming && !isRotating)
             {
                 Zoom();
             }
@@ -262,20 +256,56 @@ public class CameraMovement : MonoBehaviour
 
         /*
         #region DEBUG TEXT
-        text00.text = ("onZoom : " + onZoom);
-        text01.text = ("distanceDiff : " + distanceDiff);
-        text02.text = ("isOrientationSet : " + isOrientationSet);
-        text03.text = ("isZooming : " + isZooming);
-        text04.text = ("onHorizontal : " + onHorizontal);
-        text05.text = ("onVertical : " + onVertical);
-        text06.text = ("isRotating : " + isRotating);
-        text07.text = ("speed : " + speed);
-        text08.text = ("fieldOfView : " + fieldOfView);
-        text09.text = ("currentSlowTime : " + currentSlowTime);
+        debugTexts[0].text = ("onZoom : " + onZoom);
+        debugTexts[1].text = ("distanceDiff : " + distanceDiff);
+        debugTexts[2].text = ("isOrientationSet : " + isOrientationSet);
+        debugTexts[3].text = ("isZooming : " + isZooming);
+        debugTexts[4].text = ("onHorizontal : " + onHorizontal);
+        debugTexts[5].text = ("onVertical : " + onVertical);
+        debugTexts[6].text = ("isRotating : " + isRotating);
+        debugTexts[7].text = ("speed : " + speed);
+        debugTexts[8].text = ("fieldOfView : " + fieldOfView);
+        debugTexts[9].text = ("currentSlowTime : " + currentSlowTime);
+        debugTexts[10].text = ("aboutCamera : " + aboutCamera);
+        debugTexts[11].text = ("currentSlowTime : " + currentSlowTime);
+        debugTexts[12].text = ("pathOffset : " + pathOffset);
+        debugTexts[13].text = ("pathSpeed : " + pathSpeed);
 
         #endregion
+        */
 
-    */
+        CheckComponentValues();
+    }
+
+    private void CheckComponentValues()
+    {
+        if (fieldOfView < minFOV)
+        {
+            fieldOfView = minFOV;
+            currentSlowTime = 1;
+            isZooming = false;
+        }
+
+        if (fieldOfView > maxFOV)
+        {
+            fieldOfView = maxFOV;
+            currentSlowTime = 1;
+            isZooming = false;
+        }
+
+        if (pathOffset < minOffset)
+        {
+            pathOffset = minOffset;
+            currentSlowTime = 1;
+            isRotating = false;
+        }
+
+        if (pathOffset > maxOffset)
+        {
+            pathOffset = maxOffset;
+            currentSlowTime = 1;
+            isRotating = false;
+        }
     }
 
     /// <summary>
