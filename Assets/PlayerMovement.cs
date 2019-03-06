@@ -30,7 +30,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        /*
+        /*if(Input.GetKeyDown(KeyCode.A))
+        {
+
+           // Debug.LogError(context.paths.list.Count);
+
+        }*/
+
         if(ways.Count < context.paths.list.Count)
         {
             ways.Add(new bool());
@@ -39,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         {
             ways.RemoveAt(ways.Count - 1);
         }
-        */
+        
        /* = context.paths.list;*/
 
         if (reset)
