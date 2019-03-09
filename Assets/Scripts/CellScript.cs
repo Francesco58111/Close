@@ -15,6 +15,8 @@ public class CellScript : MonoBehaviour {
     public int fin;
     public Quaternion wtf;
     public bool isCurrent;
+    public List<CellMovement> brothers;
+    public Cell_Renamer renameManager;
 
 	void Start () {
 
@@ -48,6 +50,12 @@ public class CellScript : MonoBehaviour {
             {
                 timeRot = 0;
                 rotation = false;
+
+                for (int r = 0; r < brothers.Count; r++)
+                {
+                    brothers[r].hasEnded = true;
+
+                }
             }
         }
       
@@ -65,68 +73,86 @@ public class CellScript : MonoBehaviour {
 
             if(Physics.Raycast(gameObject.transform.position, new Vector3(0, 0, -1), out hit))
             {
-                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                if (hit.transform.tag == "Cell")
                 {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
-                }
-                else
-                {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                    }
+                    else
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    }
                 }
             }
             if (Physics.Raycast(gameObject.transform.position, new Vector3(0, 0, 1), out hit))
             {
-                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                if (hit.transform.tag == "Cell")
                 {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
-                }
-                else
-                {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                    }
+                    else
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    }
                 }
             }
             if (Physics.Raycast(gameObject.transform.position, new Vector3(0, -1, 0), out hit))
             {
-                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                if (hit.transform.tag == "Cell")
                 {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
-                }
-                else
-                {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                    }
+                    else
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    }
                 }
             }
             if (Physics.Raycast(gameObject.transform.position, new Vector3(0, 1, 0), out hit))
             {
-                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                if (hit.transform.tag == "Cell")
                 {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
-                }
-                else
-                {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                    }
+                    else
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    }
                 }
             }
             if (Physics.Raycast(gameObject.transform.position, new Vector3(-1, 0, 0), out hit))
             {
-                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                if (hit.transform.tag == "Cell")
                 {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
-                }
-                else
-                {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                    }
+                    else
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    }
                 }
             }
             if (Physics.Raycast(gameObject.transform.position, new Vector3(1, 0, 0), out hit))
             {
-                if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                if (hit.transform.tag == "Cell")
                 {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
-                }
-                else
-                {
-                    hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    if (hit.transform.gameObject.GetComponent<CellMovement>().isOpen == false)
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = true;
+                    }
+                    else
+                    {
+                        hit.transform.gameObject.GetComponent<CellMovement>().isOpen = false;
+                    }
                 }
             }
         }
@@ -136,6 +162,12 @@ public class CellScript : MonoBehaviour {
 
         if (first && nbrTouch>1)
         {
+            for (int r = 0; r < brothers.Count; r++)
+            {
+                brothers[r].hasEnded = false;
+
+            }
+
             set = true;
             if (set)
             {

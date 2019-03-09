@@ -39,6 +39,7 @@ public class CellMovement : MonoBehaviour
     public bool reverse;
     public CellPlacement cP;
     public bool moveVerticalX;
+    public Cell_Renamer renameManager;
 
     #region Init
     void Start()
@@ -104,6 +105,13 @@ public class CellMovement : MonoBehaviour
                     transform.GetChild(i).GetComponent<Renderer>().material.SetInt("_isActive", 0);
                 }
             }
+        }
+
+        if(toRotate.Count < 4)
+        {
+
+            toRotate.Clear();
+
         }
         
 
@@ -212,6 +220,7 @@ public class CellMovement : MonoBehaviour
             toRotate.Reverse();
             reverse = false;
         }
+
         //Increment a value (timer) when OnMouseDown
         if (click)
         {
@@ -288,7 +297,7 @@ public class CellMovement : MonoBehaviour
 
             ///There May Be A Delay Between Two Movement with this way to check
             ///
-            if (toRotate[0].position == toRotate[1].GetComponent<CellMovement>().myPosFreeze && toRotate.Count >= 3)
+            if (toRotate[0].position == toRotate[1].GetComponent<CellMovement>().myPosFreeze && toRotate.Count == 4)
             {
                 Debug.LogWarning("__HAS__ENDED__");
                 movement = false;
@@ -307,6 +316,7 @@ public class CellMovement : MonoBehaviour
                 {
                     brothers[o].GetComponent<CellMovement>().hasEnded = true;
                 }
+
                 /*
                 toRotate[0].GetComponent<CellMovement>().distanceMove = new Vector2(0, 0);
                 toRotate[1].GetComponent<CellMovement>().distanceMove = new Vector2(0, 0);
@@ -332,10 +342,16 @@ public class CellMovement : MonoBehaviour
         {
             Debug.LogWarning("YOU DEMANDED THE INVERSE");
 
+            for (int r = 0; r < brothers.Count; r++)
+            {
+                brothers[r].GetComponent<CellMovement>().hasEnded = false;
+
+            }
+            /*
             toRotate[0].GetComponent<CellMovement>().hasEnded = false;
             toRotate[1].GetComponent<CellMovement>().hasEnded = false;
             toRotate[2].GetComponent<CellMovement>().hasEnded = false;
-            toRotate[3].GetComponent<CellMovement>().hasEnded = false;
+            toRotate[3].GetComponent<CellMovement>().hasEnded = false;*/
 
             for (int v = 0; v < toRotate.Count; v++)
             {
@@ -355,7 +371,7 @@ public class CellMovement : MonoBehaviour
 
             ///There May Be A Delay Between Two Movement with this way to check
             ///
-            if (toRotate[0].position == toRotate[1].GetComponent<CellMovement>().myPosFreeze && toRotate.Count >= 3)
+            if (toRotate[0].position == toRotate[1].GetComponent<CellMovement>().myPosFreeze && toRotate.Count == 4)
             {
                 Debug.LogWarning("__HAS__ENDED__");
                 movement = false;
@@ -365,10 +381,18 @@ public class CellMovement : MonoBehaviour
                 toRotate[2].GetComponent<CellMovement>().freezePosValue = true;
                 toRotate[3].GetComponent<CellMovement>().freezePosValue = true;
 
+
+                for (int o = 0; o < brothers.Count; o++)
+                {
+                    brothers[o].GetComponent<CellMovement>().hasEnded = true;
+                }
+
+
+                /*
                 toRotate[0].GetComponent<CellMovement>().hasEnded = true;
                 toRotate[1].GetComponent<CellMovement>().hasEnded = true;
                 toRotate[2].GetComponent<CellMovement>().hasEnded = true;
-                toRotate[3].GetComponent<CellMovement>().hasEnded = true;
+                toRotate[3].GetComponent<CellMovement>().hasEnded = true;*/
 
                 once = false;
                 selected = false;
@@ -383,10 +407,16 @@ public class CellMovement : MonoBehaviour
         {
             Debug.LogWarning("YOU DEMANDED THE INVERSE BUT IN X");
 
-            toRotate[0].GetComponent<CellMovement>().hasEnded = false;
+            for (int r = 0; r < brothers.Count; r++)
+            {
+                brothers[r].GetComponent<CellMovement>().hasEnded = false;
+
+            }
+
+            /*toRotate[0].GetComponent<CellMovement>().hasEnded = false;
             toRotate[1].GetComponent<CellMovement>().hasEnded = false;
             toRotate[2].GetComponent<CellMovement>().hasEnded = false;
-            toRotate[3].GetComponent<CellMovement>().hasEnded = false;
+            toRotate[3].GetComponent<CellMovement>().hasEnded = false;*/
 
             for (int v = 0; v < toRotate.Count; v++)
             {
@@ -406,7 +436,7 @@ public class CellMovement : MonoBehaviour
 
             ///There May Be A Delay Between Two Movement with this way to check
             ///
-            if (toRotate[0].position == toRotate[1].GetComponent<CellMovement>().myPosFreeze && toRotate.Count >= 3)
+            if (toRotate[0].position == toRotate[1].GetComponent<CellMovement>().myPosFreeze && toRotate.Count == 4)
             {
                 Debug.LogWarning("__HAS__ENDED__");
                 movement = false;
@@ -416,10 +446,15 @@ public class CellMovement : MonoBehaviour
                 toRotate[2].GetComponent<CellMovement>().freezePosValue = true;
                 toRotate[3].GetComponent<CellMovement>().freezePosValue = true;
 
-                toRotate[0].GetComponent<CellMovement>().hasEnded = true;
+                for (int o = 0; o < brothers.Count; o++)
+                {
+                    brothers[o].GetComponent<CellMovement>().hasEnded = true;
+                }
+
+                /*toRotate[0].GetComponent<CellMovement>().hasEnded = true;
                 toRotate[1].GetComponent<CellMovement>().hasEnded = true;
                 toRotate[2].GetComponent<CellMovement>().hasEnded = true;
-                toRotate[3].GetComponent<CellMovement>().hasEnded = true;
+                toRotate[3].GetComponent<CellMovement>().hasEnded = true;*/
 
                 once = false;
                 selected = false;
