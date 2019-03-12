@@ -8,5 +8,6 @@ public class ScrEnvironment : MonoBehaviour
     public Transform basePos;
     public Transform basePosUp;
     public WayPointList paths;
+    public List<Transform> doorWayPoints;
 
 }

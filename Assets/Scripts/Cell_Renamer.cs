@@ -6,6 +6,8 @@ public class Cell_Renamer : MonoBehaviour
 {
 
     public string PositionName;
+    public List<GameObject> brothers;
+    public bool manager;
 
 
     public void OnTriggerEnter(Collider other)
@@ -13,36 +15,52 @@ public class Cell_Renamer : MonoBehaviour
         if (other.gameObject.tag == "Cell" && other.gameObject.name.Contains(PositionName) == false)
         {
             other.gameObject.name = PositionName;
-            for (int i = 0; i < other.transform.childCount; i++)
+            
+        }
+    }
+    /*
+    public void ResetFacesNames()
+    {
+        if (manager)
+        {
+            for (int i = 0; i < brothers.Count; i++)
             {
-                //Debug.LogError(other.transform.GetChild(i).name + other.transform.GetChild(i).transform.localPosition);
+                for (int v = 0; v < brothers[i].transform.childCount; v++)
+                {
+                    if (brothers[i].transform.GetChild(v).transform.localPosition.y == 0.5f)
+                    {
+                        brothers[i].transform.GetChild(v).name = "PlaneUp";
+                    }
+                    else if (brothers[i].transform.GetChild(v).transform.localPosition.y == -0.5f)
+                    {
+                        brothers[i].transform.GetChild(v).name = "PlaneDown";
+                    }
+                    else if (brothers[i].transform.GetChild(v).transform.localPosition.x == 0.5f)
+                    {
+                        brothers[i].transform.GetChild(v).name = "PlaneForward";
+                        Debug.Log("renamed  " + "   Forward");
+                    }
+                    else if (brothers[i].transform.GetChild(v).transform.localPosition.x == -0.5f)
+                    {
+                        brothers[i].transform.GetChild(v).name = "PlaneAway";
+                        Debug.Log("renamed  " + "   Away");
+                    }
+                    else if (brothers[i].transform.GetChild(v).transform.localPosition.z == 0.5f)
+                    {
+                        brothers[i].transform.GetChild(v).name = "PlaneRight";
+                        Debug.Log("renamed  " + "   Right");
+                    }
+                    else if (brothers[i].transform.GetChild(v).transform.localPosition.z == -0.5f)
+                    {
+                        brothers[i].transform.GetChild(v).name = "PlaneLeft";
+                        Debug.Log("renamed  " + "   Left");
 
-                if (other.transform.GetChild(i).transform.localPosition.y == 0.5f )
-                {
-                    other.transform.GetChild(i).name = "PlaneUp";
-                }
-                else if (other.transform.GetChild(i).transform.localPosition.y == -0.5f )
-                {
-                    other.transform.GetChild(i).name = "PlaneDown";
-                }
-                else if (other.transform.GetChild(i).transform.localPosition.x == 0.5f)
-                {
-                    other.transform.GetChild(i).name = "PlaneForward";
-                }
-                else if (other.transform.GetChild(i).transform.localPosition.x == -0.5f)
-                {
-                    other.transform.GetChild(i).name = "PlaneAway";
-                }
-                else if (other.transform.GetChild(i).transform.localPosition.z == 0.5f)
-                {
-                    other.transform.GetChild(i).name = "PlaneRight";
-                }
-                else if (other.transform.GetChild(i).transform.localPosition.z == -0.5f)
-                {
-                    other.transform.GetChild(i).name = "PlaneLeft";
+                    }
                 }
 
             }
+
         }
-    }
+        
+    }*/
 }

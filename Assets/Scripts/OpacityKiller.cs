@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class OpacityKiller : MonoBehaviour
     private float opaciteVar;
     public bool isActive;
 
+    public bool oui;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,12 @@ public class OpacityKiller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space) && oui)
+        {
+            Debug.Log(transform.position);
+        }
+
+        //Renamer();
 
         if(gameObject.name.Contains("Up") == false && gameObject.name.Contains("Down") == false && isActive)
         {
@@ -60,6 +69,8 @@ public class OpacityKiller : MonoBehaviour
         //Debug.Log(distance);
     }
 
+   
+
     public void OnTriggerStay(Collider other)
     {
 
@@ -77,4 +88,36 @@ public class OpacityKiller : MonoBehaviour
             isActive = false;
         }
     }
+
+    /*private void Renamer()
+    {
+        if (transform.position.y == 0.5f && transform.name != "PlaneUp")
+        {
+            transform.name = "PlaneUp";
+        }
+        if (transform.position.y == -0.5f && transform.name != "PlaneDown")
+        {
+            transform.name = "PlaneDown";
+        }
+        if (transform.position.x == 0.5f && transform.name != "PlaneForward")
+        {
+            transform.name = "PlaneForward";
+            Debug.Log("renamed  " + "   Forward");
+        }
+        if (transform.position.x == -0.5f && transform.name != "PlaneAway")
+        {
+            transform.name = "PlaneAway";
+            Debug.Log("renamed  " + "   Away");
+        }
+        if (transform.position.z == 0.5f && transform.name != "PlaneRight")
+        {
+            transform.name = "PlaneRight";
+            Debug.Log("renamed  " + "   Right");
+        }
+        if (transform.position.z == -0.5f && transform.name != "PlaneLeft")
+        {
+            transform.name = "PlaneLeft";
+            Debug.Log("renamed  " + "   Left");
+        }
+    }*/
 }
