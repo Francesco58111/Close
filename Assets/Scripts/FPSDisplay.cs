@@ -7,6 +7,13 @@ public class FPSDisplay : MonoBehaviour {
     float deltaTime = 0.0f;
     [SerializeField] Color textColor = Color.white;
 
+
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 300;
+    }
+
     void Update()
     {
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;

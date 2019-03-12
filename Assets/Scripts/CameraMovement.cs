@@ -75,9 +75,17 @@ public class CameraMovement : MonoBehaviour
     public List<TextMeshProUGUI> debugTexts;
     */
 
+    public static CameraMovement Instance;
+
+
+
+
+
+
+
     private void Awake()
     {
-        Application.targetFrameRate = 300;
+        Instance = this;
     }
 
     void Update()
