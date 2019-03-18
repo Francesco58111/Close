@@ -17,15 +17,15 @@ public class CellPlacement : MonoBehaviour
     public bool once;
     public GameObject facingPlane;
 
-    // Use this for initialization
+
+
+
+
     void Start()
     {
-        //Application.targetFrameRate = 300;
         nbrTouch = 0;
-
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -55,10 +55,13 @@ public class CellPlacement : MonoBehaviour
                     }*/
 //
                     CameraBehaviour.Instance.rotateAroundCube = false;
-// Develop:Assets/Scripts/CellPlacement.cs
+                    CameraMovement.Instance.aboutCamera = false;
+                    // Develop:Assets/Scripts/CellPlacement.cs
                 }
-
-                
+                else
+                {
+                    CameraMovement.Instance.aboutCamera = true;
+                }
             }
             else
             {
