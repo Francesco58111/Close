@@ -89,6 +89,9 @@ public class PlayerMovement : MonoBehaviour
 
                 transform.position = Vector3.Lerp(transform.position, waypoints.listOfWaypoint[index].position, 0.05f);
 
+                Vector3 direction = transform.position - waypoints.listOfWaypoint[index].position;
+                transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
                 if (distance <= minDist && index != waypoints.listOfWaypoint.Count - 2 && next)
                 {
                     //once = false;
